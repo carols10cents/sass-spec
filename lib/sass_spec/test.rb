@@ -8,6 +8,10 @@ def run_spec_test(test_case, options = {})
   assert File.exists?(test_case.input_path), "Input #{test_case.input_path} file does not exist"
   assert File.exists?(test_case.expected_path), "Expected #{test_case.expected_path} file does not exist"
 
+  if options[:verbose]
+    puts "Running #{test_case.output_style}, #{test_case.name}"
+  end
+
   output, clean_output, error, status = test_case.output
 
   if status != 0 && !options[:unexpected_pass]
